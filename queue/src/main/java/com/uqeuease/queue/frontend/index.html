@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>QueueEase - OPD Queue Management</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOGIN PAGE
+===================================================== -->
+
+<section id="loginPage" class="login-page">
+
+    <div class="login-card">
+
+        <div class="login-logo">
+            🏥
+        </div>
+
+        <h1>QueueEase</h1>
+
+        <p class="login-subtitle">
+            OPD Queue Management System
+        </p>
+
+
+        <!-- LOGIN TYPE -->
+
+        <div class="login-tabs">
+
+            <button
+                id="doctorLoginTab"
+                class="login-tab active"
+                onclick="selectLoginType('doctor')">
+
+                👨‍⚕️ Doctor
+
+            </button>
+
+
+            <button
+                id="patientLoginTab"
+                class="login-tab"
+                onclick="selectLoginType('patient')">
+
+                🧑 Patient
+
+            </button>
+
+        </div>
+
+
+        <!-- DOCTOR LOGIN -->
+
+        <form
+            id="doctorLoginForm"
+            class="login-form">
+
+            <div class="form-group">
+
+                <label>Doctor Username</label>
+
+                <input
+                    type="text"
+                    id="doctorUsername"
+                    placeholder="Enter doctor username"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="doctorPassword"
+                    placeholder="Enter password"
+                    required>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="primary-btn login-btn">
+
+                Doctor Login
+
+            </button>
+
+        </form>
+
+
+        <!-- PATIENT LOGIN -->
+
+        <form
+            id="patientLoginForm"
+            class="login-form hidden">
+
+            <div class="form-group">
+
+                <label>Phone Number</label>
+
+                <input
+                    type="text"
+                    id="patientLoginPhone"
+                    placeholder="Enter registered phone number"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="patientLoginPassword"
+                    placeholder="Enter password"
+                    required>
+
+            </div>
+
+
+            <button
+                type="submit"
+                class="primary-btn login-btn">
+
+                Patient Login
+
+            </button>
+
+        </form>
+
+
+        <p id="loginMessage"></p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     DOCTOR APPLICATION
+===================================================== -->
+
+<div id="doctorApp" class="app hidden">
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            🏥 QueueEase
+        </div>
+
+
+        <div class="header-right">
+
+            <span id="doctorWelcome">
+                Doctor
+            </span>
+
+            <button
+                class="logout-btn"
+                onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- DOCTOR NAVIGATION -->
+
+    <nav class="doctor-nav">
+
+        <button
+            onclick="showDoctorSection('doctorDashboard')">
+
+            Dashboard
+
+        </button>
+
+
+        <button
+            onclick="showDoctorSection('doctorQueue')">
+
+            Queue
+
+        </button>
+
+
+        <button
+            onclick="showDoctorSection('doctorPatients')">
+
+            Patients
+
+        </button>
+
+    </nav>
+
+
+
+    <main>
+
+
+        <!-- DOCTOR DASHBOARD -->
+
+        <section
+            id="doctorDashboard"
+            class="section active">
+
+            <div class="hero">
+
+                <h1>
+                    Doctor Dashboard
+                </h1>
+
+                <p>
+                    Manage today's OPD queue easily with QueueEase.
+                </p>
+
+            </div>
+
+
+            <div class="stats">
+
+
+                <div class="stat-card">
+
+                    <h3>
+                        Waiting Patients
+                    </h3>
+
+                    <p id="doctorWaitingCount">
+                        0
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <h3>
+                        Now Serving
+                    </h3>
+
+                    <p id="doctorCurrentToken">
+                        -
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <h3>
+                        Completed
+                    </h3>
+
+                    <p id="doctorCompletedCount">
+                        0
+                    </p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <h3>
+                        Total Queue
+                    </h3>
+
+                    <p id="doctorTotalCount">
+                        0
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- CURRENT PATIENT -->
+
+            <div class="doctor-action-card">
+
+                <h2>
+                    Current Patient
+                </h2>
+
+                <div
+                    id="currentPatientInfo"
+                    class="current-patient">
+
+                    No patient is currently being served.
+
+                </div>
+
+
+                <button
+                    class="primary-btn call-next-btn"
+                    onclick="callNextPatient()">
+
+                    📢 Call Next Patient
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- DOCTOR QUEUE -->
+
+        <section
+            id="doctorQueue"
+            class="section">
+
+            <div class="card">
+
+                <div class="queue-header">
+
+                    <div>
+
+                        <h2>
+                            Today's OPD Queue
+                        </h2>
+
+                        <p>
+                            Manage patient tokens
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-btn"
+                        onclick="loadDoctorQueue()">
+
+                        🔄 Refresh
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="now-serving">
+
+                    <span>
+                        Now Serving
+                    </span>
+
+                    <strong
+                        id="doctorQueueCurrentToken">
+
+                        -
+
+                    </strong>
+
+                </div>
+
+
+                <div id="doctorQueueList">
+
+                    <p class="empty">
+                        No queue data available.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- DOCTOR PATIENTS -->
+
+        <section
+            id="doctorPatients"
+            class="section">
+
+            <div class="card">
+
+                <h2>
+                    Registered Patients
+                </h2>
+
+                <div id="doctorPatientList">
+
+                    <p class="empty">
+                        Loading patients...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     PATIENT APPLICATION
+===================================================== -->
+
+<div id="patientApp" class="app hidden">
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+            🏥 QueueEase
+        </div>
+
+
+        <div class="header-right">
+
+            <span id="patientWelcome">
+                Patient
+            </span>
+
+            <button
+                class="logout-btn"
+                onclick="logout()">
+
+                Logout
+
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- PATIENT NAVIGATION -->
+
+    <nav class="doctor-nav">
+
+        <button
+            onclick="showPatientSection('patientDashboard')">
+
+            Dashboard
+
+        </button>
+
+
+        <button
+            onclick="showPatientSection('patientToken')">
+
+            Get Token
+
+        </button>
+
+
+        <button
+            onclick="showPatientSection('myToken')">
+
+            My Token
+
+        </button>
+
+    </nav>
+
+
+
+    <main>
+
+
+        <!-- PATIENT DASHBOARD -->
+
+        <section
+            id="patientDashboard"
+            class="section active">
+
+            <div class="hero">
+
+                <h1>
+                    Patient Dashboard
+                </h1>
+
+                <p>
+                    Check your OPD token and estimated waiting time.
+                </p>
+
+            </div>
+
+
+            <div class="patient-dashboard-card">
+
+                <h2>
+                    Welcome to QueueEase
+                </h2>
+
+                <p>
+                    You can generate a token, check your queue
+                    position and view your estimated waiting time.
+                </p>
+
+
+                <button
+                    class="primary-btn"
+                    onclick="showPatientSection('patientToken')">
+
+                    🎫 Get OPD Token
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- GET TOKEN -->
+
+        <section
+            id="patientToken"
+            class="section">
+
+            <div class="card">
+
+                <h2>
+                    Generate OPD Token
+                </h2>
+
+
+                <form id="tokenForm">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Select Doctor
+                        </label>
+
+
+                        <select
+                            id="tokenDoctor"
+                            required>
+
+                            <option value="">
+                                Select Doctor
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Token Priority
+                        </label>
+
+
+                        <select
+                            id="tokenPriority">
+
+                            <option value="NORMAL">
+                                Normal
+                            </option>
+
+                            <option value="EMERGENCY">
+                                Emergency
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="primary-btn">
+
+                        🎫 Generate Token
+
+                    </button>
+
+                </form>
+
+
+                <div
+                    id="tokenMessage"
+                    class="token-result">
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- MY TOKEN -->
+
+        <section
+            id="myToken"
+            class="section">
+
+            <div class="card">
+
+                <h2>
+                    My Token
+                </h2>
+
+
+                <div
+                    id="myTokenDetails"
+                    class="my-token-card">
+
+                    <p>
+                        No token generated yet.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,706 @@
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
+}
+
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =====================================================
+   LOGIN PAGE
+===================================================== */
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background: linear-gradient(
+        135deg,
+        #eef4ff,
+        #f8fbff
+    );
+}
+
+.login-card {
+    width: 100%;
+    max-width: 430px;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.10);
+    text-align: center;
+}
+
+.login-logo {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eaf1ff;
+    border-radius: 50%;
+    font-size: 35px;
+}
+
+.login-card h1 {
+    font-size: 30px;
+    color: #2563eb;
+    margin-bottom: 6px;
+}
+
+.login-subtitle {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+
+/* =====================================================
+   LOGIN TABS
+===================================================== */
+
+.login-tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    background: #f1f5f9;
+    padding: 5px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+
+.login-tab {
+    border: none;
+    background: transparent;
+    padding: 12px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #64748b;
+    transition: 0.2s;
+}
+
+.login-tab:hover {
+    color: #2563eb;
+}
+
+.login-tab.active {
+    background: #ffffff;
+    color: #2563eb;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, 0.08);
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+.login-form {
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #374151;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 13px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+    font-size: 15px;
+    background: #ffffff;
+    transition: 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+}
+
+.login-btn {
+    width: 100%;
+    margin-top: 5px;
+}
+
+#loginMessage {
+    margin-top: 18px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
+.primary-btn {
+    background: #2563eb;
+    color: #ffffff;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.primary-btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.primary-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.header {
+    min-height: 70px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-right span {
+    font-weight: bold;
+    color: #374151;
+}
+
+.logout-btn {
+    border: none;
+    background: #fee2e2;
+    color: #b91c1c;
+    padding: 9px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.logout-btn:hover {
+    background: #fecaca;
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+.doctor-nav {
+    background: #ffffff;
+    border-top: 1px solid #f1f5f9;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 10px 40px;
+    display: flex;
+    gap: 10px;
+}
+
+.doctor-nav button {
+    border: none;
+    background: transparent;
+    padding: 10px 18px;
+    border-radius: 8px;
+    color: #4b5563;
+    font-weight: bold;
+}
+
+.doctor-nav button:hover {
+    background: #eaf1ff;
+    color: #2563eb;
+}
+
+
+/* =====================================================
+   MAIN SECTIONS
+===================================================== */
+
+.section {
+    display: none;
+    padding: 40px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section.active {
+    display: block;
+}
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+    color: #ffffff;
+    border-radius: 18px;
+    padding: 45px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.18);
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    font-size: 17px;
+    max-width: 650px;
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   STATS
+===================================================== */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.stat-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.07);
+}
+
+.stat-card h3 {
+    color: #6b7280;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.stat-card p {
+    font-size: 32px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+
+/* =====================================================
+   CARDS
+===================================================== */
+
+.card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+}
+
+.card h2 {
+    margin-bottom: 20px;
+}
+
+
+/* =====================================================
+   DOCTOR ACTION CARD
+===================================================== */
+
+.doctor-action-card {
+    background: #ffffff;
+    padding: 30px;
+    margin-top: 30px;
+    border-radius: 16px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+}
+
+.doctor-action-card h2 {
+    margin-bottom: 20px;
+}
+
+.current-patient {
+    background: #f8fafc;
+    border: 1px solid #e5e7eb;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    color: #6b7280;
+}
+
+.call-next-btn {
+    min-width: 200px;
+}
+
+
+/* =====================================================
+   QUEUE HEADER
+===================================================== */
+
+.queue-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.queue-header p {
+    color: #6b7280;
+    margin-top: 5px;
+}
+
+
+/* =====================================================
+   NOW SERVING
+===================================================== */
+
+.now-serving {
+    background: #eef4ff;
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.now-serving span {
+    display: block;
+    color: #6b7280;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.now-serving strong {
+    font-size: 42px;
+    color: #2563eb;
+}
+
+
+/* =====================================================
+   QUEUE ITEM
+===================================================== */
+
+.queue-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 18px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.queue-item:last-child {
+    border-bottom: none;
+}
+
+.token-number {
+    min-width: 65px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.token-info {
+    flex: 1;
+}
+
+.token-info h4 {
+    margin-bottom: 6px;
+}
+
+.token-info p {
+    color: #6b7280;
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status.WAITING {
+    background: #fff7ed;
+    color: #c2410c;
+}
+
+.status.SERVING {
+    background: #ecfdf5;
+    color: #047857;
+}
+
+.status.COMPLETED {
+    background: #f3f4f6;
+    color: #4b5563;
+}
+
+.status.CANCELLED {
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+
+/* =====================================================
+   PATIENT LIST
+===================================================== */
+
+.patient-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.patient-list-item:last-child {
+    border-bottom: none;
+}
+
+.patient-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.patient-details {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   PATIENT DASHBOARD
+===================================================== */
+
+.patient-dashboard-card {
+    background: #ffffff;
+    padding: 35px;
+    border-radius: 16px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+}
+
+.patient-dashboard-card h2 {
+    margin-bottom: 12px;
+}
+
+.patient-dashboard-card p {
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 22px;
+}
+
+
+/* =====================================================
+   TOKEN RESULT
+===================================================== */
+
+.token-result {
+    margin-top: 25px;
+}
+
+.token-success {
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    padding: 25px;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.token-success h3 {
+    color: #047857;
+    margin-bottom: 10px;
+}
+
+.big-token {
+    font-size: 55px;
+    font-weight: bold;
+    color: #2563eb;
+    margin: 10px 0;
+}
+
+
+/* =====================================================
+   MY TOKEN
+===================================================== */
+
+.my-token-card {
+    background: #eef4ff;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+}
+
+.my-token-number {
+    font-size: 60px;
+    font-weight: bold;
+    color: #2563eb;
+    margin: 15px 0;
+}
+
+.my-token-info {
+    color: #4b5563;
+    line-height: 1.8;
+}
+
+
+/* =====================================================
+   EMPTY
+===================================================== */
+
+.empty {
+    text-align: center;
+    color: #6b7280;
+    padding: 35px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 800px) {
+
+    .header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .header-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .doctor-nav {
+        padding: 10px 15px;
+        overflow-x: auto;
+    }
+
+    .doctor-nav button {
+        white-space: nowrap;
+    }
+
+    .section {
+        padding: 20px;
+    }
+
+    .hero {
+        padding: 30px;
+    }
+
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .queue-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .queue-item {
+        gap: 12px;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .login-page {
+        padding: 15px;
+    }
+
+    .login-card {
+        padding: 25px 20px;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 25px;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+    }
+
+    .queue-item {
+        flex-wrap: wrap;
+    }
+
+    .token-info {
+        min-width: 180px;
+    }
+
+    .status {
+        margin-left: auto;
+    }
+
+    .doctor-action-card {
+        padding: 22px;
+    }
+
+}
